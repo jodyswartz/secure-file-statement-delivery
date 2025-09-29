@@ -1,0 +1,6 @@
+#Intellij folder exclusion
+.DS_Store
+.idea/
+
+#Java setup exclusion
+target/
