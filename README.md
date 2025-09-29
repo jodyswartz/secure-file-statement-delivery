@@ -66,7 +66,7 @@ docker run -p 8080:8080   -e SPRING_PROFILES_ACTIVE=prod   -e JDBC_URL='jdbc:pos
 
 ## Notes
 Some of the liberties:
-- used minIO, this is to simulate S3 locally, but in production this would be swapped put of AWS's S3
+- used minIO, this is to simulate S3 locally, but in production this would be swapped out of AWS's S3. 
 - Focused on getting it to work locally, I have not setup the production flow in AWS.
 - Running ths mvn test outlines the happy flow.
 
