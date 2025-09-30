@@ -31,10 +31,12 @@ jobs:
       - name: Run tests
         run: mvn -B -ntp test
 
-      - name: Promote to qa (fast-forward only)
-        if: ${{ success() }}
+      - name: Promote to qa (merge test -> qa)
+        if: ${{ success() && github.ref == 'refs/heads/test' }}
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Fast-forward qa to this exact commit (rejects if qa diverged)
-          git push origin HEAD:refs/heads/qa
+          git fetch origin
+          git checkout -B qa origin/qa
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-ff --no-edit origin/test
+          git push origin qa
