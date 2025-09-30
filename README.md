@@ -38,7 +38,7 @@ End users download via those links—no login, just a tokenized URL that expires
 docker compose up --build
 ```
 - App: http://localhost:8080
-- MinIO Console: http://localhost:9001 (username: minioadmin/ password: minioadmin)
+- MinIO Console: http://localhost:9001 (Username: minioadmin / Password: minioadmin)
 
 ## Check if everything is up & running:
 ```bash
