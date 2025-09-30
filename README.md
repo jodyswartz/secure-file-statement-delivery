@@ -1,4 +1,10 @@
-# Secure File Statement Delivery (Java / Spring Boot)
+<div align="center">
+
+# Secure File Statement Delivery
+
+<img src="https://raw.githubusercontent.com/jodyswartz/public-project-data/refs/heads/main/secure-file-statement-delivery/assets/images/logo.png" alt="secure-file-statement-delivery" width="40%">
+
+</div>
 
 ## Scenario
 Production-grade service to upload monthly account statements (PDF) and provide secure, time-limited download links with audit logging.
@@ -7,14 +13,11 @@ Production-grade service to upload monthly account statements (PDF) and provide 
 Admins upload statements and generate time-limited download links.
 End users download via those links—no login, just a tokenized URL that expires.
 
+
 ## How it works
-
 - Upload: POST /admin/statements (multipart) saves the PDF to S3/MinIO and a Statement row in Postgres.
-
 - Create link: POST /admin/statements/{id}/links makes a DownloadToken (with expiry + createdBy) and returns a short app URL like /download/{token}.
-
 - Download: GET /download/{token} validates the token, logs a DownloadAudit (userId, IP, userAgent, time), then redirects to a presigned S3 URL so the browser fetches the file directly.
-
 - Security: Admin endpoints require an API key header. Download links are short-lived and single-purpose. There’s also a simple rate-limit filter.
 
 ### Persistence:
@@ -68,7 +71,7 @@ docker run -p 8080:8080   -e SPRING_PROFILES_ACTIVE=prod   -e JDBC_URL='jdbc:pos
 Some of the liberties:
 - used minIO, this is to simulate S3 locally, but in production this would be swapped out of AWS's S3. 
 - Focused on getting it to work locally, I have not setup the production flow in AWS.
-- Running ths mvn test outlines the happy flow.
+- Running ths mvn test, tests the happy flow. 
 
 
 ### Manually test
